@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Logged Out — TinyBlog{% endblock %}
+{% block content %}
+  <header>
+    <h1>Logged out</h1>
+  </header>
+  <p>You have been logged out. <a href="{% url 'login' %}">Log in again</a> or return to the <a href="{% url 'post-list' %}">posts</a>.</p>
+{% endblock %}
+

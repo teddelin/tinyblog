@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}New Post — TinyBlog{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+{% endblock %}
+{% block body_class %}wide{% endblock %}
+{% block content %}
+  {% if user.is_authenticated %}
+    <header>
+      <h1>New Post</h1>
+    </header>
+  {% endif %}
+
+  {% if form.non_field_errors %}
+    <div class="errors">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  <form method="post" class="form-card">
+    {% csrf_token %}
+    <div class="form-grid">
+      <div class="row">
+        <label for="id_title">Title</label>
+        {{ form.title }}
+        <div class="field-errors">{{ form.title.errors }}</div>
+      </div>
+
+      <div class="row">
+        <label for="id_slug">Slug</label>
+        {{ form.slug }}
+        <div class="field-errors">{{ form.slug.errors }}</div>
+      </div>
+
+      <div class="row">
+        <label for="id_excerpt">Excerpt</label>
+        {{ form.excerpt }}
+        <div class="field-errors">{{ form.excerpt.errors }}</div>
+      </div>
+
+      <div class="row">
+        <label for="id_status">Status</label>
+        {{ form.status }}
+        <div class="field-errors">{{ form.status.errors }}</div>
+      </div>
+    </div>
+
+    <div class="row row--spaced">
+      <label for="id_content">Content</label>
+      <div class="editor-grid">
+        <div>
+          {{ form.content }}
+          <div class="field-errors">{{ form.content.errors }}</div>
+          <small>Markdown supported.</small>
+        </div>
+        <div>
+          <div class="preview-header">Live Preview</div>
+          <div id="md-preview" class="md-preview" data-preview-url="{% url 'markdown-preview' %}"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn-primary">Create Post</button>
+      <a href="{% url 'post-list' %}">Cancel</a>
+    </div>
+  </form>
+
+  {% load static %}
+{% endblock %}
+{% block extra_scripts %}
+  <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+  {% load static %}
+  <script src="{% static 'posts/post_form.js' %}"></script>
+{% endblock %}

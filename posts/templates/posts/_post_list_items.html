@@ -1,0 +1,15 @@
+{% if posts %}
+  {% for post in posts %}
+    <article class="post-card">
+      <a class="post-card-link" href="{% url 'post-detail' slug=post.slug %}">
+        <h2>{{ post.title }}</h2>
+        <div class="meta">
+          by {{ post.author }} • {% if post.published_at %}{{ post.published_at|date:"M j, Y" }}{% endif %}
+        </div>
+        <p>{{ post.excerpt|default:post.content|truncatewords:40 }}</p>
+      </a>
+    </article>
+  {% endfor %}
+{% else %}
+  <p>No posts found.</p>
+{% endif %}

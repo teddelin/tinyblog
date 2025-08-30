@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Posts — TinyBlog{% endblock %}
+{% block content %}
+  <div class="search-bar">
+    <label for="post-search" class="search-label">Search:</label>
+    <input
+      id="post-search"
+      name="q"
+      type="search"
+      placeholder="Search posts..."
+      class="tb-input search-input"
+      hx-get="{% url 'post-search' %}"
+      hx-trigger="keyup changed delay:250ms, search"
+      hx-target="#posts-container"
+      hx-push-url="false"
+    >
+    <button id="theme-toggle" class="search-clear" type="button" title="Toggle theme">🌙</button>
+  </div>
+
+  <div id="posts-container" class="card-grid" data-search-url="{% url 'post-search' %}">
+    {% include "posts/_post_list_items.html" %}
+  </div>
+
+  {% if is_paginated %}
+    <nav id="post-pager" class="pager">
+      <div>
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}">← Newer</a>
+        {% endif %}
+      </div>
+      <div>
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+      </div>
+      <div>
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">Older →</a>
+        {% endif %}
+      </div>
+    </nav>
+  {% endif %}
+
+{% endblock %}
+{% block extra_scripts %}
+  {% load static %}
+  <script src="{% static 'posts/post_list.js' %}"></script>
+{% endblock %}

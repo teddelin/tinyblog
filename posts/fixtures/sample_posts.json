@@ -1,0 +1,470 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "author",
+      "first_name": "",
+      "last_name": "",
+      "email": "author@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 1,
+    "fields": {
+      "title": "Post 1 — Getting Started",
+      "slug": "post-1-getting-started",
+      "author": 1,
+      "excerpt": "Introductory markdown sample with headings and lists.",
+      "content": "# Getting Started\n\nWelcome to **TinyBlog**. This is a sample post written in Markdown.\n\n- Create posts\n- Edit content\n- Publish when ready\n\n```python\nprint('hello tinyblog')\n```\n\nLearn more on the [project page](https://example.com).",
+      "status": "published",
+      "published_at": "2025-02-01T09:00:00Z",
+      "created_at": "2025-02-01T08:55:00Z",
+      "updated_at": "2025-02-01T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 2,
+    "fields": {
+      "title": "Post 2 — Markdown Basics",
+      "slug": "post-2-markdown-basics",
+      "author": 1,
+      "excerpt": "Basics of Markdown syntax.",
+      "content": "# Markdown Basics\n\nUse `inline code` and paragraphs.\n\n1. Headings\n2. Lists\n3. Links like [Django](https://www.djangoproject.com/)\n\n> Blockquotes add emphasis.",
+      "status": "published",
+      "published_at": "2025-02-02T09:00:00Z",
+      "created_at": "2025-02-02T08:55:00Z",
+      "updated_at": "2025-02-02T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+      "title": "Post 3 — Tables and Code",
+      "slug": "post-3-tables-and-code",
+      "author": 1,
+      "excerpt": "Tables and code blocks in Markdown.",
+      "content": "# Tables and Code\n\n| Feature | Supported |\n|---|---|\n| Tables | Yes |\n| Fences | Yes |\n\n```bash\npython manage.py runserver\n```",
+      "status": "published",
+      "published_at": "2025-02-03T09:00:00Z",
+      "created_at": "2025-02-03T08:55:00Z",
+      "updated_at": "2025-02-03T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+      "title": "Post 4 — Links and Images",
+      "slug": "post-4-links-and-images",
+      "author": 1,
+      "excerpt": "Demonstrating links and image syntax.",
+      "content": "# Links and Images\n\nLink: [TinyBlog](https://example.com)\n\nImage syntax (no actual image src here):\n\n![](https://placehold.co/600x200)",
+      "status": "published",
+      "published_at": "2025-02-04T09:00:00Z",
+      "created_at": "2025-02-04T08:55:00Z",
+      "updated_at": "2025-02-04T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 5,
+    "fields": {
+      "title": "Post 5 — Tips and Tricks",
+      "slug": "post-5-tips-and-tricks",
+      "author": 1,
+      "excerpt": "A few authoring tips.",
+      "content": "# Tips and Tricks\n\n- Use headings to structure content\n- Keep paragraphs short\n- Use code fences for snippets\n\n```js\nconsole.log('TinyBlog');\n```",
+      "status": "published",
+      "published_at": "2025-02-05T09:00:00Z",
+      "created_at": "2025-02-05T08:55:00Z",
+      "updated_at": "2025-02-05T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 6,
+    "fields": {
+      "title": "Post 6 — Lists Galore",
+      "slug": "post-6-lists-galore",
+      "author": 1,
+      "excerpt": "Unordered and ordered lists.",
+      "content": "# Lists Galore\n\n- Apples\n- Bananas\n- Cherries\n\n1. First\n2. Second\n3. Third",
+      "status": "published",
+      "published_at": "2025-02-06T09:00:00Z",
+      "created_at": "2025-02-06T08:55:00Z",
+      "updated_at": "2025-02-06T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 7,
+    "fields": {
+      "title": "Post 7 — Quotes",
+      "slug": "post-7-quotes",
+      "author": 1,
+      "excerpt": "Blockquotes and nested content.",
+      "content": "# Quotes\n\n> \"Simplicity is the soul of efficiency.\" — Austin Freeman\n\n> Another quote with **bold** text.",
+      "status": "published",
+      "published_at": "2025-02-07T09:00:00Z",
+      "created_at": "2025-02-07T08:55:00Z",
+      "updated_at": "2025-02-07T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 8,
+    "fields": {
+      "title": "Post 8 — Emphasis",
+      "slug": "post-8-emphasis",
+      "author": 1,
+      "excerpt": "Bold and italic emphasis.",
+      "content": "# Emphasis\n\nUse *italic* and **bold** to highlight text. Combine ***both*** when necessary.",
+      "status": "published",
+      "published_at": "2025-02-08T09:00:00Z",
+      "created_at": "2025-02-08T08:55:00Z",
+      "updated_at": "2025-02-08T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 9,
+    "fields": {
+      "title": "Post 9 — Code Styles",
+      "slug": "post-9-code-styles",
+      "author": 1,
+      "excerpt": "Inline and fenced code styles.",
+      "content": "# Code Styles\n\nUse `InlineCode()` and fenced blocks:\n\n```python\ndef add(a, b):\n    return a + b\n```",
+      "status": "published",
+      "published_at": "2025-02-09T09:00:00Z",
+      "created_at": "2025-02-09T08:55:00Z",
+      "updated_at": "2025-02-09T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 10,
+    "fields": {
+      "title": "Post 10 — Tasks",
+      "slug": "post-10-tasks",
+      "author": 1,
+      "excerpt": "Task list style.",
+      "content": "# Tasks\n\n- [x] Write posts\n- [ ] Add tags\n- [ ] Share with friends",
+      "status": "published",
+      "published_at": "2025-02-10T09:00:00Z",
+      "created_at": "2025-02-10T08:55:00Z",
+      "updated_at": "2025-02-10T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 11,
+    "fields": {
+      "title": "Post 11 — Architecture",
+      "slug": "post-11-architecture",
+      "author": 1,
+      "excerpt": "App structure overview.",
+      "content": "# Architecture\n\nThis post outlines the TinyBlog structure and how views, URLs, and templates connect.",
+      "status": "published",
+      "published_at": "2025-02-11T09:00:00Z",
+      "created_at": "2025-02-11T08:55:00Z",
+      "updated_at": "2025-02-11T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 12,
+    "fields": {
+      "title": "Post 12 — Performance",
+      "slug": "post-12-performance",
+      "author": 1,
+      "excerpt": "Notes on performance and indexing.",
+      "content": "# Performance\n\nUse database indexes and efficient querysets (e.g., `select_related`) to speed up pages.",
+      "status": "published",
+      "published_at": "2025-02-12T09:00:00Z",
+      "created_at": "2025-02-12T08:55:00Z",
+      "updated_at": "2025-02-12T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 13,
+    "fields": {
+      "title": "Post 13 — Security",
+      "slug": "post-13-security",
+      "author": 1,
+      "excerpt": "Security considerations.",
+      "content": "# Security\n\nAlways protect forms with CSRF and be careful with user-provided Markdown if allowing public authors.",
+      "status": "published",
+      "published_at": "2025-02-13T09:00:00Z",
+      "created_at": "2025-02-13T08:55:00Z",
+      "updated_at": "2025-02-13T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 14,
+    "fields": {
+      "title": "Post 14 — Styling",
+      "slug": "post-14-styling",
+      "author": 1,
+      "excerpt": "Styling templates lightly.",
+      "content": "# Styling\n\nUse simple, readable defaults. Consider a CSS framework later.",
+      "status": "published",
+      "published_at": "2025-02-14T09:00:00Z",
+      "created_at": "2025-02-14T08:55:00Z",
+      "updated_at": "2025-02-14T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 15,
+    "fields": {
+      "title": "Post 15 — Pagination",
+      "slug": "post-15-pagination",
+      "author": 1,
+      "excerpt": "How pagination helps UX.",
+      "content": "# Pagination\n\nPaginate results to keep pages fast and readable.",
+      "status": "published",
+      "published_at": "2025-02-15T09:00:00Z",
+      "created_at": "2025-02-15T08:55:00Z",
+      "updated_at": "2025-02-15T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 16,
+    "fields": {
+      "title": "Post 16 — Search",
+      "slug": "post-16-search",
+      "author": 1,
+      "excerpt": "Live search with htmx.",
+      "content": "# Search\n\nUsing `htmx` we can progressively enhance search without heavy JS.",
+      "status": "published",
+      "published_at": "2025-02-16T09:00:00Z",
+      "created_at": "2025-02-16T08:55:00Z",
+      "updated_at": "2025-02-16T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 17,
+    "fields": {
+      "title": "Post 17 — Testing",
+      "slug": "post-17-testing",
+      "author": 1,
+      "excerpt": "Testing is essential.",
+      "content": "# Testing\n\nWrite tests to ensure views and filters behave as expected.",
+      "status": "published",
+      "published_at": "2025-02-17T09:00:00Z",
+      "created_at": "2025-02-17T08:55:00Z",
+      "updated_at": "2025-02-17T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 18,
+    "fields": {
+      "title": "Post 18 — Admin",
+      "slug": "post-18-admin",
+      "author": 1,
+      "excerpt": "Using Django admin.",
+      "content": "# Admin\n\nDjango admin offers quick CRUD over your models.",
+      "status": "published",
+      "published_at": "2025-02-18T09:00:00Z",
+      "created_at": "2025-02-18T08:55:00Z",
+      "updated_at": "2025-02-18T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 19,
+    "fields": {
+      "title": "Post 19 — Fixtures",
+      "slug": "post-19-fixtures",
+      "author": 1,
+      "excerpt": "Seed your database.",
+      "content": "# Fixtures\n\nUse `loaddata` to import initial content for development.",
+      "status": "published",
+      "published_at": "2025-02-19T09:00:00Z",
+      "created_at": "2025-02-19T08:55:00Z",
+      "updated_at": "2025-02-19T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 20,
+    "fields": {
+      "title": "Post 20 — Slugs",
+      "slug": "post-20-slugs",
+      "author": 1,
+      "excerpt": "Human-friendly URLs.",
+      "content": "# Slugs\n\nSlugs keep links readable and stable across edits.",
+      "status": "published",
+      "published_at": "2025-02-20T09:00:00Z",
+      "created_at": "2025-02-20T08:55:00Z",
+      "updated_at": "2025-02-20T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 21,
+    "fields": {
+      "title": "Post 21 — Excerpts",
+      "slug": "post-21-excerpts",
+      "author": 1,
+      "excerpt": "Summaries help scanning.",
+      "content": "# Excerpts\n\nAdd short summaries to improve list readability.",
+      "status": "published",
+      "published_at": "2025-02-21T09:00:00Z",
+      "created_at": "2025-02-21T08:55:00Z",
+      "updated_at": "2025-02-21T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 22,
+    "fields": {
+      "title": "Post 22 — Detail Views",
+      "slug": "post-22-detail-views",
+      "author": 1,
+      "excerpt": "Detail page pattern.",
+      "content": "# Detail Views\n\nUse Django's `DetailView` with a slug field for clean URLs.",
+      "status": "published",
+      "published_at": "2025-02-22T09:00:00Z",
+      "created_at": "2025-02-22T08:55:00Z",
+      "updated_at": "2025-02-22T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 23,
+    "fields": {
+      "title": "Post 23 — Create Views",
+      "slug": "post-23-create-views",
+      "author": 1,
+      "excerpt": "Creating content via forms.",
+      "content": "# Create Views\n\n`CreateView` pairs nicely with a ModelForm for quick CRUD.",
+      "status": "published",
+      "published_at": "2025-02-23T09:00:00Z",
+      "created_at": "2025-02-23T08:55:00Z",
+      "updated_at": "2025-02-23T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 24,
+    "fields": {
+      "title": "Post 24 — Authentication",
+      "slug": "post-24-authentication",
+      "author": 1,
+      "excerpt": "Auth for editors.",
+      "content": "# Authentication\n\nRestrict creation to logged-in users to keep content under control.",
+      "status": "published",
+      "published_at": "2025-02-24T09:00:00Z",
+      "created_at": "2025-02-24T08:55:00Z",
+      "updated_at": "2025-02-24T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 25,
+    "fields": {
+      "title": "Post 25 — Markdown",
+      "slug": "post-25-markdown",
+      "author": 1,
+      "excerpt": "Write in Markdown, render to HTML.",
+      "content": "# Markdown\n\nWrite content in Markdown and render with a template filter.",
+      "status": "published",
+      "published_at": "2025-02-25T09:00:00Z",
+      "created_at": "2025-02-25T08:55:00Z",
+      "updated_at": "2025-02-25T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 26,
+    "fields": {
+      "title": "Post 26 — Drafts",
+      "slug": "post-26-drafts",
+      "author": 1,
+      "excerpt": "Keep work-in-progress private.",
+      "content": "# Drafts\n\nDraft status hides posts from the public list.",
+      "status": "published",
+      "published_at": "2025-02-26T09:00:00Z",
+      "created_at": "2025-02-26T08:55:00Z",
+      "updated_at": "2025-02-26T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 27,
+    "fields": {
+      "title": "Post 27 — Indexes",
+      "slug": "post-27-indexes",
+      "author": 1,
+      "excerpt": "Database indexes for speed.",
+      "content": "# Indexes\n\nAdd useful DB indexes like on `slug` and `(status, published_at)`.",
+      "status": "published",
+      "published_at": "2025-02-27T09:00:00Z",
+      "created_at": "2025-02-27T08:55:00Z",
+      "updated_at": "2025-02-27T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 28,
+    "fields": {
+      "title": "Post 28 — Templates",
+      "slug": "post-28-templates",
+      "author": 1,
+      "excerpt": "Base and partial templates.",
+      "content": "# Templates\n\nUse a shared base template and partials for reuse.",
+      "status": "published",
+      "published_at": "2025-02-28T09:00:00Z",
+      "created_at": "2025-02-28T08:55:00Z",
+      "updated_at": "2025-02-28T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 29,
+    "fields": {
+      "title": "Post 29 — Deployment",
+      "slug": "post-29-deployment",
+      "author": 1,
+      "excerpt": "Prepare for production.",
+      "content": "# Deployment\n\nCollect static, set up a real DB, and configure a WSGI/ASGI server.",
+      "status": "published",
+      "published_at": "2025-03-01T09:00:00Z",
+      "created_at": "2025-03-01T08:55:00Z",
+      "updated_at": "2025-03-01T08:57:00Z"
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 30,
+    "fields": {
+      "title": "Post 30 — Roadmap",
+      "slug": "post-30-roadmap",
+      "author": 1,
+      "excerpt": "What’s next for TinyBlog.",
+      "content": "# Roadmap\n\n- Post detail enhancements\n- Tags and archives\n- RSS/Atom feeds\n\nThanks for reading!",
+      "status": "published",
+      "published_at": "2025-03-02T09:00:00Z",
+      "created_at": "2025-03-02T08:55:00Z",
+      "updated_at": "2025-03-02T08:57:00Z"
+    }
+  }
+]

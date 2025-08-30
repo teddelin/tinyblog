@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load markdown_extras %}
+{% block title %}{{ post.title }} — TinyBlog{% endblock %}
+{% block content %}
+  <header>
+    <h1 class="post-title">{{ post.title }}</h1>
+    <div class="meta post-meta">
+      by {{ post.author }}
+      {% if post.published_at %} • published {{ post.published_at|date:"M j, Y" }}{% endif %}
+    </div>
+  </header>
+
+  <article class="content post-content">
+    {{ post.content|markdown }}
+  </article>
+
+  <a class="back-link" href="{% url 'post-list' %}">← Back to Posts</a>
+{% endblock %}

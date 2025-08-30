@@ -1,0 +1,64 @@
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Build and packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Logs
+*.log
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment files
+.env
+.env.*
+.envrc
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+local_settings.py
+staticfiles/
+static/
+media/
+
+# Tests and coverage
+.pytest_cache/
+.coverage*
+htmlcov/
+.tox/
+.nox/
+.cache/
+
+# Type checkers / linters
+.mypy_cache/
+.pytype/
+.ruff_cache/
+.pyright/
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.code-workspace
+
+# OS files
+.DS_Store
+
+# Docs
+docs/_build/
+
+# Node (if present)
+node_modules/
