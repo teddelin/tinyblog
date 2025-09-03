@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 {% load markdown_extras %}
-{% block title %}{{ post.title }} — TinyBlog{% endblock %}
+{% block title %}{{ post.title }} — Delin Tech{% endblock %}
 {% block content %}
   <header>
-    <h1 class="post-title">{{ post.title }}</h1>
+    <h1 class="post-title">{{ post.title }}
+      {% if request.user.is_authenticated and post.status == 'draft' and post.author == request.user %}
+        <a class="edit-link" href="{% url 'post-edit' slug=post.slug %}" title="Edit draft" aria-label="Edit draft">✏️</a>
+      {% endif %}
+    </h1>
     <div class="meta post-meta">
       by {{ post.author }}
-      {% if post.published_at %} • published {{ post.published_at|date:"M j, Y" }}{% endif %}
+      {% if post.status == 'draft' %}
+        • Draft
+      {% elif post.published_at %}
+        • published {{ post.published_at|date:"M j, Y" }}
+      {% endif %}
     </div>
   </header>
 

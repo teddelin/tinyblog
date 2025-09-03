@@ -4,10 +4,18 @@
       <a class="post-card-link" href="{% url 'post-detail' slug=post.slug %}">
         <h2>{{ post.title }}</h2>
         <div class="meta">
-          by {{ post.author }} • {% if post.published_at %}{{ post.published_at|date:"M j, Y" }}{% endif %}
+          by {{ post.author }} •
+          {% if post.status == 'draft' %}
+            Draft
+          {% elif post.published_at %}
+            {{ post.published_at|date:"M j, Y" }}
+          {% endif %}
         </div>
         <p>{{ post.excerpt|default:post.content|truncatewords:40 }}</p>
       </a>
+      {% if request.user.is_authenticated and post.status == 'draft' and post.author == request.user %}
+        <a class="edit-link" href="{% url 'post-edit' slug=post.slug %}" title="Edit draft" aria-label="Edit draft">✏️</a>
+      {% endif %}
     </article>
   {% endfor %}
 {% else %}

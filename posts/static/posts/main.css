@@ -84,7 +84,7 @@ nav .container { display: flex; gap: 1rem; align-items: center; }
 .card-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 @media (min-width: 720px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1100px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
-.post-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; box-shadow: var(--soft-shadow); }
+.post-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; box-shadow: var(--soft-shadow); position: relative; }
 .post-card h2 { margin: 0 0 .25rem; font-size: 1.2rem; }
 .post-card .meta { color: var(--muted); font-size: .85rem; margin-bottom: .5rem; }
 /* No custom anchor styling; use browser defaults */
@@ -103,6 +103,10 @@ nav .container { display: flex; gap: 1rem; align-items: center; }
 .post-meta { color: var(--muted); font-size: .95rem; margin-bottom: 1rem; }
 .post-content { line-height: 1.6; }
 .back-link { display: inline-block; margin-top: 2rem; }
+
+/* Edit link (pencil) */
+.edit-link { float: right; margin-left: .5rem; color: var(--accent); }
+.post-card .edit-link { position: absolute; top: .6rem; right: .6rem; }
 
 /* Markdown code blocks */
 :root { --code-bg: #f6f8fa; }

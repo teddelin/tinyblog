@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}TinyBlog{% endblock %}</title>
+    <title>{% block title %}Delin Tech{% endblock %}</title>
     {% load static %}
     <script src="{% static 'posts/init-theme.js' %}"></script>
     <link rel="stylesheet" href="{% static 'posts/main.css' %}">
@@ -14,7 +14,7 @@
     {% if user.is_authenticated %}
       <nav>
         <div class="container">
-          <a href="{% url 'post-list' %}"><strong>TinyBlog</strong></a>
+          <a href="{% url 'post-list' %}"><strong>Delin Tech</strong></a>
           <span class="divider">|</span>
           <a href="{% url 'post-list' %}">Posts</a>
           <a href="{% url 'post-create' %}">New Post</a>

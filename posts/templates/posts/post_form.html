@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}New Post — TinyBlog{% endblock %}
+{% block title %}{% if form.instance.pk %}Edit Post — Delin Tech{% else %}New Post — Delin Tech{% endif %}{% endblock %}
 {% block extra_head %}
   <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
 {% endblock %}
@@ -7,7 +7,7 @@
 {% block content %}
   {% if user.is_authenticated %}
     <header>
-      <h1>New Post</h1>
+      <h1>{% if form.instance.pk %}Edit Post{% else %}New Post{% endif %}</h1>
     </header>
   {% endif %}
 
@@ -59,7 +59,7 @@
     </div>
 
     <div class="actions">
-      <button type="submit" class="btn-primary">Create Post</button>
+      <button type="submit" class="btn-primary">{% if form.instance.pk %}Save Changes{% else %}Create Post{% endif %}</button>
       <a href="{% url 'post-list' %}">Cancel</a>
     </div>
   </form>
