@@ -1,0 +1,24 @@
+{{- if .Values.pv.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.pv.name }}
+  labels:
+    type: local
+    app.kubernetes.io/name: {{ include "tinyblog.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  storageClassName: {{ .Values.pv.storageClassName }}
+  capacity:
+    storage: {{ .Values.pv.capacity }}
+  accessModes:
+  {{- range .Values.pv.accessModes }}
+    - {{ . }}
+  {{- end }}
+  persistentVolumeReclaimPolicy: {{ .Values.pv.reclaimPolicy }}
+  nfs:
+    path: {{ .Values.pv.nfs.path }}
+    server: {{ .Values.pv.nfs.server }}
+    readOnly: {{ .Values.pv.nfs.readOnly | default false }}
+{{- end }}
+

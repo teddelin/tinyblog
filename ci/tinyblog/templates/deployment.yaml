@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "tinyblog.fullname" . }}
+  labels:
+    {{- include "tinyblog.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "tinyblog.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "tinyblog.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "tinyblog.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      volumes:
+        - name: tinyblog-static
+          emptyDir: {}
+        - name: tinyblog-db
+          persistentVolumeClaim:
+            claimName: {{ .Values.pvc.name | quote }}
+
+      initContainers:
+        - name: move-static
+          image: "{{ .Values.appImage.repository }}:{{ .Values.appImage.tag }}"
+          imagePullPolicy: {{ .Values.appImage.pullPolicy }}
+          env:
+            - name: STATIC_ROOT_PATH
+              value: {{ .Values.staticRootPath | quote }}
+          volumeMounts:
+            - name: tinyblog-static
+              mountPath: {{ .Values.staticRootPath | quote }}
+          command: ["python", "manage.py", "collectstatic", "--noinput"]
+
+      containers:
+        - name: app-nginx
+          image: "{{ .Values.nginxImage.repository }}:{{ .Values.nginxImage.tag }}"
+          imagePullPolicy: {{ .Values.nginxImage.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+              name: gunicorn
+          volumeMounts:
+            - name: tinyblog-static
+              mountPath: {{ .Values.staticRootPath | quote }}
+        - name: tinyblog
+          image: "{{ .Values.appImage.repository }}:{{ .Values.appImage.tag }}"
+          imagePullPolicy: {{ .Values.appImage.pullPolicy }}
+          volumeMounts:
+            - name: tinyblog-db
+              mountPath: "/mnt"
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
