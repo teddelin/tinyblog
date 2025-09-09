@@ -40,6 +40,8 @@ class PostForm(forms.ModelForm):
                     "class": "tb-textarea tb-monospace",
                     "placeholder": "Write your post in Markdown...",
                     "rows": 16,
+                    "spellcheck": "true",
+                    "lang": "en",
                 }
             ),
             "status": forms.Select(attrs={"class": "tb-select"}),

@@ -38,10 +38,12 @@
       element: el,
       autofocus: false,
       autosave: { enabled: true, uniqueId: 'tinyblog-post-content', delay: 1000 },
+      // Use the browser's native spellchecker via contentEditable for English
       spellChecker: false,
       status: false,
       placeholder: 'Write your post in Markdown...',
       forceSync: true,
+      codemirror: { inputStyle: 'contenteditable' },
       renderingConfig: { codeSyntaxHighlighting: true },
       toolbar: [
         'bold','italic','strikethrough','heading','|',
@@ -51,6 +53,15 @@
         'guide'
       ]
     });
+
+    // Ensure spellcheck/lang attributes are set on the editable element
+    try {
+      var inputEl = editor.codemirror.getInputField();
+      if (inputEl) {
+        inputEl.setAttribute('spellcheck', 'true');
+        inputEl.setAttribute('lang', 'en');
+      }
+    } catch (e) { /* noop */ }
 
     var csrfInput = document.querySelector('input[name="csrfmiddlewaretoken"]');
     var csrfToken = csrfInput ? csrfInput.value : null;
@@ -81,4 +92,3 @@
     renderPreview();
   });
 })();
-
