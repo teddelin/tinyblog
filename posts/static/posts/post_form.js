@@ -5,14 +5,32 @@
   }
 
   const COMBINING_MARKS = /\p{M}/gu;
-  const NON_SLUG_CHARS = /[^a-z0-9]+/g;
 
   function slugify(text) {
     try {
       const normalized = text.toString().toLowerCase().normalize('NFD');
       const withoutMarks = normalized.replaceAll(COMBINING_MARKS, '');
-      const collapsed = withoutMarks.replaceAll(NON_SLUG_CHARS, '-');
-      return collapsed.replaceAll(/^-+/, '').replaceAll(/-+$/, '');
+
+      let result = '';
+      let pendingHyphen = false;
+
+      for (const char of withoutMarks) {
+        const isDigit = char >= '0' && char <= '9';
+        const isLowerAlpha = char >= 'a' && char <= 'z';
+        if (isDigit || isLowerAlpha) {
+          if (pendingHyphen && result.length > 0) {
+            result += '-';
+          }
+          result += char;
+          pendingHyphen = false;
+        } else {
+          if (result.length > 0) {
+            pendingHyphen = true;
+          }
+        }
+      }
+
+      return result;
     } catch (e) {
       return text;
     }
