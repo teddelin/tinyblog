@@ -37,9 +37,7 @@ pipeline {
     post {
         always {
             agent { label 'docker' }
-            steps {
-                cleanWs()
-            }
+            cleanWs()
         }
     }
 }
