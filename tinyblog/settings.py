@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from urllib.parse import urlparse, unquote
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +23,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", 'django-insecure-avh548jfb0=)v%)i)=s^hiyeuu-d$3-f+4a4aze2)7)#=3cvym')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if os.environ.get('DEBUG', False) else False
+def truthy(value: str | None, default: bool = False) -> bool:
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "y", "on"}
 
-ALLOWED_HOSTS = [ "blog.delin.tech", "127.0.0.1", "localhost"]
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = truthy(os.environ.get('DEBUG'), False)
+
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get(
+        'ALLOWED_HOSTS',
+        "blog.delin.tech,127.0.0.1,localhost"
+    ).split(',')
+    if host.strip()
+]
 
 
 # Application definition
@@ -76,19 +89,16 @@ WSGI_APPLICATION = 'tinyblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+    default_database = BASE_DIR / 'db.sqlite3'
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/mnt/db.sqlite3',
-        }
+    default_database = Path(os.environ.get('SQLITE_PATH', '/mnt/db.sqlite3'))
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(default_database),
     }
+}
 
 
 # Password validation

@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = 'tinyblog-app'
+        REGISTRY_URL = 'harbour.delin.tech/tinyblog/'
+        REGISTRY_CREDENTIALS = 'docker-registry-credentials'
+    }
+
     stages {
         stage('test and coverage') {
             agent {
@@ -30,6 +36,27 @@ pipeline {
                     withSonarQubeEnv() {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
+                }
+            }
+        }
+        stage('Build & Push Image') {
+            agent { label 'docker' }
+            when {
+                anyOf {
+                    branch 'main'
+                    branch 'master'
+                }
+            }
+            steps {
+                script {
+                    def imageTag = "${env.REGISTRY_URL}/${env.IMAGE_NAME}:${env.BUILD_NUMBER}"
+                    docker.withRegistry("https://${env.REGISTRY_URL}", env.REGISTRY_CREDENTIALS) {
+                        def appImage = docker.build(imageTag)
+                        appImage.push()
+                        appImage.push('latest')
+                    }
+                    sh "docker image rm ${imageTag} || true"
+                    sh "docker image rm ${env.REGISTRY_URL}/${env.IMAGE_NAME}:latest || true"
                 }
             }
         }
