@@ -19,7 +19,6 @@ pipeline {
                     coverage run manage.py test
                     coverage report -m
                     coverage xml -o coverage_reports/coverage.xml
-                    coverage html -d coverage_reports/html
                 '''
             }
         }
@@ -37,7 +36,10 @@ pipeline {
     }
     post {
         always {
-            cleanWs()
+            agent { label 'docker' }
+            steps {
+                cleanWs()
+            }
         }
     }
 }
