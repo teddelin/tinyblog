@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{% if form.instance.pk %}Edit Post — Delin Tech{% else %}New Post — Delin Tech{% endif %}{% endblock %}
 {% block extra_head %}
-  <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/easymde@2.20.0/dist/easymde.min.css" integrity="sha384-3AvV7152TgYAMYdGZPqG9BpmSH2ZW6ewTDL0QV5PyNkl19KMI+yLMdJz183N8A2d" crossorigin="anonymous">
 {% endblock %}
 {% block body_class %}wide{% endblock %}
 {% block content %}
@@ -67,7 +67,7 @@
   {% load static %}
 {% endblock %}
 {% block extra_scripts %}
-  <script src="https://unpkg.com/easymde/dist/easymde.min.js" integrity="sha384-aSmb3jyukd2+eAU93JtepDg81inpoWcttyq5VEnR4GniK7RVxHNBTZ+yW+ZA9tmD" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/easymde@2.20.0/dist/easymde.min.js" integrity="sha384-YDXeUfPZ4SP6vJpnF+ZMmf4B1bax6yd4Q/aNbkvLidRD843hPG5RE67M0IYT4LOq" crossorigin="anonymous"></script>
   {% load static %}
   <script src="{% static 'posts/post_form.js' %}"></script>
 {% endblock %}

@@ -6,14 +6,42 @@
 
   function slugify(text) {
     try {
-      return text
-        .toString()
-        .toLowerCase()
-        .normalize('NFD').replaceAll(/\p{Diacritic}/gu, '')
-        .replaceAll(/[^a-z0-9\s-]/g, '')
-        .trim()
-        .replaceAll(/[\s_-]+/g, '-')
-        .replaceAll(/(?:^-+|-+$)/g, '');
+      const normalized = text.toString().toLowerCase().normalize('NFD');
+      let result = '';
+      let prevHyphen = false;
+
+      for (const char of normalized) {
+        const code = char.charCodeAt(0);
+        const isCombining =
+          (code >= 0x0300 && code <= 0x036f) || // Combining Diacritical Marks
+          (code >= 0x1ab0 && code <= 0x1aff) || // Combining Diacritical Marks Extended
+          (code >= 0x1dc0 && code <= 0x1dff) || // Combining Diacritical Marks Supplement
+          (code >= 0x20d0 && code <= 0x20ff) || // Combining Diacritical Marks for Symbols
+          (code >= 0xfe20 && code <= 0xfe2f);   // Combining Half Marks
+        if (isCombining) continue;
+
+        const isAlphanumeric =
+          (code >= 0x30 && code <= 0x39) || // 0-9
+          (code >= 0x61 && code <= 0x7a);   // a-z
+        if (isAlphanumeric) {
+          result += char;
+          prevHyphen = false;
+          continue;
+        }
+
+        if (char === ' ' || char === '_' || char === '-') {
+          if (!prevHyphen && result.length > 0) {
+            result += '-';
+            prevHyphen = true;
+          }
+          continue;
+        }
+      }
+
+      while (result.endsWith('-')) {
+        result = result.slice(0, -1);
+      }
+      return result;
     } catch (e) {
       return text;
     }
