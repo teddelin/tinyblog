@@ -4,7 +4,7 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
-  const COMBINING_MARKS = /[\u0300-\u036f\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/g;
+  const COMBINING_MARKS = /\p{M}/gu;
   const NON_SLUG_CHARS = /[^a-z0-9]+/g;
 
   function slugify(text) {
