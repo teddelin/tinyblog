@@ -1,6 +1,6 @@
 (function () {
   try {
     const t = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', t);
+    document.documentElement.dataset.theme = t;
   } catch (e) {}
 })();

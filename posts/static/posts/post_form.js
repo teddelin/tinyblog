@@ -11,7 +11,7 @@
       let prevHyphen = false;
 
       for (const char of normalized) {
-        const code = char.charCodeAt(0);
+        const code = char.codePointAt(0);
         const isCombining =
           (code >= 0x0300 && code <= 0x036f) || // Combining Diacritical Marks
           (code >= 0x1ab0 && code <= 0x1aff) || // Combining Diacritical Marks Extended
@@ -34,7 +34,6 @@
             result += '-';
             prevHyphen = true;
           }
-          continue;
         }
       }
 
