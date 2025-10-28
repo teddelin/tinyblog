@@ -60,6 +60,22 @@ pipeline {
                 }
             }
         }
+        stage('Deploy to Production') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh "cp deploy/docker-compose.yaml /opt/tinyblog"
+                workDir('/opt/tinyblog') {
+                    sh """
+                            docker compose pull
+                            docker compose up -d --remove-orphans
+                            docker compose run --rm web python manage.py migrate --noinput
+                            docker compose run --rm web python manage.py collectstatic --noinput
+                    """
+                }
+            }
+        }
     }
     post {
         always {
