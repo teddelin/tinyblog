@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
 
     stages {
         stage('test and coverage') {
@@ -36,8 +36,9 @@ pipeline {
     }
     post {
         always {
-            agent { label 'docker' }
-            cleanWs()
+            node('docker') { 
+                cleanWs()
+            }
         }
     }
 }
