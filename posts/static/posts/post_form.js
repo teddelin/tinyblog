@@ -23,10 +23,8 @@
           }
           result += char;
           pendingHyphen = false;
-        } else {
-          if (result.length > 0) {
-            pendingHyphen = true;
-          }
+        } else if (result.length > 0) {
+          pendingHyphen = true;
         }
       }
 
