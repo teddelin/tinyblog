@@ -1,26 +1,20 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.11-slim'   // ✅ Use an existing Python image
-            args '-u root'             // run as root to install packages
-        }
-    }
+    agent none
 
     stages {
-        stage('Install Dependencies') {
+        stage('test and coverage') {
+            agent {
+                docker {
+                    image 'python:3.11-slim'
+                    args '-u root'
+                }
+            }
             steps {
                 sh '''
                     apt-get update && apt-get install -y build-essential libpq-dev
                     pip install --upgrade pip
                     pip install -r dev-requirements.txt
                     pip install coverage
-                '''
-            }
-        }
-
-        stage('Run Django Tests with Coverage') {
-            steps {
-                sh '''
                     mkdir -p coverage_reports
                     coverage run manage.py test
                     coverage report -m
@@ -30,6 +24,7 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
+            agent { label 'docker' }
             steps {
                 script {
                     def scannerHome = tool 'SonarScanner';
