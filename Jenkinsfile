@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'tinyblog-app'
-        REGISTRY_URL = 'harbour.delin.tech/tinyblog/'
+        REGISTRY_URL = 'harbour.delin.tech/tinyblog'
         REGISTRY_CREDENTIALS = 'docker-registry-credentials'
     }
 
