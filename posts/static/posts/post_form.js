@@ -4,43 +4,15 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
+  const COMBINING_MARKS = /[\u0300-\u036f\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/g;
+  const NON_SLUG_CHARS = /[^a-z0-9]+/g;
+
   function slugify(text) {
     try {
       const normalized = text.toString().toLowerCase().normalize('NFD');
-      let result = '';
-      let prevHyphen = false;
-
-      for (const char of normalized) {
-        const code = char.codePointAt(0);
-        const isCombining =
-          (code >= 0x0300 && code <= 0x036f) || // Combining Diacritical Marks
-          (code >= 0x1ab0 && code <= 0x1aff) || // Combining Diacritical Marks Extended
-          (code >= 0x1dc0 && code <= 0x1dff) || // Combining Diacritical Marks Supplement
-          (code >= 0x20d0 && code <= 0x20ff) || // Combining Diacritical Marks for Symbols
-          (code >= 0xfe20 && code <= 0xfe2f);   // Combining Half Marks
-        if (isCombining) continue;
-
-        const isAlphanumeric =
-          (code >= 0x30 && code <= 0x39) || // 0-9
-          (code >= 0x61 && code <= 0x7a);   // a-z
-        if (isAlphanumeric) {
-          result += char;
-          prevHyphen = false;
-          continue;
-        }
-
-        if (char === ' ' || char === '_' || char === '-') {
-          if (!prevHyphen && result.length > 0) {
-            result += '-';
-            prevHyphen = true;
-          }
-        }
-      }
-
-      while (result.endsWith('-')) {
-        result = result.slice(0, -1);
-      }
-      return result;
+      const withoutMarks = normalized.replaceAll(COMBINING_MARKS, '');
+      const collapsed = withoutMarks.replaceAll(NON_SLUG_CHARS, '-');
+      return collapsed.replaceAll(/^-+/, '').replaceAll(/-+$/, '');
     } catch (e) {
       return text;
     }
