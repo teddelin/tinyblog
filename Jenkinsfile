@@ -61,19 +61,22 @@ pipeline {
             }
         }
         stage('Deploy to Production') {
+            agent { label 'tinyblog-production' }
             when {
                 branch 'main'
             }
+            environment {
+                ENV_FILE = credentials('tinyblog-env') // Jenkins credentials ID
+            }
             steps {
-                sh "cp deploy/docker-compose.yaml /opt/tinyblog"
-                workDir('/opt/tinyblog') {
-                    sh """
-                            docker compose pull
-                            docker compose up -d --remove-orphans
-                            docker compose run --rm web python manage.py migrate --noinput
-                            docker compose run --rm web python manage.py collectstatic --noinput
-                    """
-                }
+                sh """
+                    echo "$ENV_FILE" > .env
+                    docker compose pull
+                    docker compose up -d --remove-orphans
+                    docker compose run --rm web python manage.py migrate --noinput
+                    docker compose run --rm web python manage.py collectstatic --noinput
+                """
+                
             }
         }
     }
